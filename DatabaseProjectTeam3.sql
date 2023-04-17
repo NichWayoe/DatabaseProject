@@ -240,9 +240,9 @@ SET
 WHERE
     COS_ID = 123 AND ASST_ID = 5;
     
--- Show new Scores Table for Assignment 6
+-- Show new Scores Table for Assignment 5
 SELECT COS_ID, ASST_ID, STUD_ID, STUD_PTS FROM Scores
-WHERE COS_ID = 456 AND ASST_ID = 6;
+WHERE COS_ID = 123 AND ASST_ID = 5;
 
 -- Task 10: Add 2 points just to those students whose last name contains a ‘Q’;
 UPDATE Scores sc
@@ -253,13 +253,13 @@ SET
 WHERE
 	COS_ID = 123 AND st.STUD_LNAME LIKE '%q%';
     
--- Show new Scores Table for STU_ID=4
+-- Show new Scores Table for STUD_ID=005
 SELECT 
     COS_ID, ASST_ID, STUD_ID, STUD_PTS
 FROM
     Scores
 WHERE
-    COS_ID = 123 AND STUD_ID = 4;
+    COS_ID = 123 AND STUD_ID = 005;
     
 -- Task 11: Compute the grade for a student;
 SELECT 
