@@ -209,6 +209,9 @@ FROM Students s INNER JOIN Enrollment e ON s.STUD_ID = e.STUD_ID
 WHERE e.COS_ID = 123;
 
 -- Task 7: Add an assignment to a course
+-- Show new Assignment table
+SELECT * FROM Assignments;
+
 INSERT INTO Assignments (ASST_NAME, ASST_TOTAL_PTS, CAT_ID)
 VALUES('HWK3', 50, 2);
 
@@ -216,6 +219,9 @@ VALUES('HWK3', 50, 2);
 SELECT * FROM Assignments;
 
 -- Task 8: Change the percentages of the categories for a course;
+SELECT * FROM Categories c
+WHERE c.COS_ID = 123;
+
 UPDATE Categories 
 SET 
     CAT_WEIGHT = CASE CAT_ID
@@ -234,24 +240,36 @@ SELECT * FROM Categories c
 WHERE c.COS_ID = 123;
 
 -- Task 9: Add 2 points to the score of each student on an assignment;
+SELECT COS_ID, ASST_ID, STUD_ID, STUD_PTS FROM Scores
+WHERE COS_ID = 124 AND ASST_ID = 5;
+
 UPDATE Scores 
 SET 
     STUD_PTS = STUD_PTS + 2
 WHERE
-    COS_ID = 123 AND ASST_ID = 5;
+    COS_ID = 124 AND ASST_ID = 5;
     
 -- Show new Scores Table for Assignment 5
 SELECT COS_ID, ASST_ID, STUD_ID, STUD_PTS FROM Scores
-WHERE COS_ID = 123 AND ASST_ID = 5;
+WHERE COS_ID = 124 AND ASST_ID = 5;
 
 -- Task 10: Add 2 points just to those students whose last name contains a ‘Q’;
+SELECT 
+    COS_ID, ASST_ID, STUD_ID, STUD_PTS
+FROM
+    Scores
+WHERE
+    COS_ID = 124 AND STUD_ID = 005;
+    
+    
 UPDATE Scores sc
         INNER JOIN
     Students st ON sc.STUD_ID = st.STUD_ID 
 SET 
     sc.STUD_PTS = sc.STUD_PTS + 2
 WHERE
-	COS_ID = 123 AND st.STUD_LNAME LIKE '%q%';
+	COS_ID = 124 AND st.STUD_LNAME LIKE '%q%';
+    
     
 -- Show new Scores Table for STUD_ID=005
 SELECT 
@@ -259,7 +277,7 @@ SELECT
 FROM
     Scores
 WHERE
-    COS_ID = 123 AND STUD_ID = 005;
+    COS_ID = 124 AND STUD_ID = 005;
     
 -- Task 11: Compute the grade for a student;
 SELECT 
@@ -300,4 +318,3 @@ WHERE
             Categories ca ON ca.CAT_ID = a.CAT_ID
         WHERE
             a.CAT_ID = 3 AND STUD_ID = 001);
-                
