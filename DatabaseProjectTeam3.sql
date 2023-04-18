@@ -268,7 +268,7 @@ SELECT
     SUM(((s.STUD_PTS / a.ASST_TOTAL_PTS) * 100) * (ca.CAT_WEIGHT)) / SUM(ca.CAT_WEIGHT) AS Final_Grade
 FROM
     Scores s
-        LEFT JOIN
+        JOIN
     Assignments a ON s.ASST_ID = a.ASST_ID
         JOIN
     Categories ca ON ca.CAT_ID = a.CAT_ID
@@ -281,10 +281,10 @@ WHERE
 SELECT 
     s.COS_ID,
     s.STUD_ID,
-    SUM(((s.STUD_PTS / a.ASST_TOTAL_PTS) * 100) * (ca.CAT_WEIGHT)) / SUM(ca.CAT_WEIGHT) AS Dropped_Grade
+    SUM(((s.STUD_PTS / a.ASST_TOTAL_PTS) * 100) * (ca.CAT_WEIGHT)) / SUM(ca.CAT_WEIGHT) AS Final_Grade_When_Lowest_Dropped_Grade
 FROM
     Scores s
-        LEFT JOIN
+        JOIN
     Assignments a ON s.ASST_ID = a.ASST_ID
         JOIN
     Categories ca ON ca.CAT_ID = a.CAT_ID
@@ -294,11 +294,10 @@ WHERE
             MIN(s.STUD_PTS)
         FROM
             Scores s
-                LEFT JOIN
+                JOIN
             Assignments a ON s.ASST_ID = a.ASST_ID
                 JOIN
             Categories ca ON ca.CAT_ID = a.CAT_ID
         WHERE
-            a.CAT_ID = 3 AND s.COS_ID = 123
-                AND STUD_ID = 001);
+            a.CAT_ID = 3 AND STUD_ID = 001);
                 
